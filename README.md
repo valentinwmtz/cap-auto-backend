@@ -1,4 +1,4 @@
-# CAP AUTO BACK-END
+# CAP AUTO BACK-END REST API
 
 ## Introduction
 
