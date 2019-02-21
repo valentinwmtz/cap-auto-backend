@@ -3,13 +3,16 @@ package com.aston.capauto.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
 @Table(name = "eleve")
-public class Eleve {
+public class Eleve extends AbstractAuditingEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
