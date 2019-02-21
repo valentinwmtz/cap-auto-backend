@@ -1,4 +1,4 @@
-package com.aston.capauto.Rest;
+package com.aston.capauto.rest;
 
 import com.aston.capauto.domain.Eleve;
 import com.aston.capauto.exception.PostWithIdException;
