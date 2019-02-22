@@ -40,7 +40,7 @@ public class EleveService {
     /**
      * Save an eleve
      *
-     * @param eleve
+     * @param eleve object
      * @return saved Eleve
      */
     public Eleve save(Eleve eleve) {
@@ -51,7 +51,7 @@ public class EleveService {
     /**
      * Delete an eleve
      *
-     * @param id
+     * @param id Eleve
      */
     public void delete(Long id) {
         eleveRepository.deleteById(id);

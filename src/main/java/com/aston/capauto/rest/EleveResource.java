@@ -2,6 +2,7 @@ package com.aston.capauto.rest;
 
 import com.aston.capauto.domain.Eleve;
 import com.aston.capauto.exception.PostWithIdException;
+import com.aston.capauto.exception.PutWithoutIdException;
 import com.aston.capauto.service.EleveService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class EleveResource {
         this.eleveService = eleveService;
     }
 
-    @GetMapping("/eleves")
+    @GetMapping("/eleve")
     public List<Eleve> getAllEleves() {
         return eleveService.findAll();
     }
@@ -32,7 +33,7 @@ public class EleveResource {
 
     @PostMapping("/eleve")
     public Eleve createEleve(@Valid @RequestBody Eleve eleve) {
-        if (eleve.getId() != null){
+        if (eleve.getId() != null) {
             throw new PostWithIdException("eleve");
         }
         return eleveService.save(eleve);
@@ -40,6 +41,9 @@ public class EleveResource {
 
     @PutMapping("/eleve")
     public Eleve updateEleve(@Valid @RequestBody Eleve eleve) {
+        if (eleve.getId() == null) {
+            throw new PutWithoutIdException("eleve");
+        }
         return eleveService.save(eleve);
     }
 

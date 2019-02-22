@@ -1,11 +1,13 @@
 package com.aston.capauto.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
@@ -28,6 +30,11 @@ public class Eleve extends AbstractAuditingEntity implements Serializable {
 
     @NotNull
     private Date dateNaissence;
+
+    @OneToOne
+    @JoinColumn(name = "adresse_id")
+    @JsonManagedReference
+    private Adresse adresse;
 
     public Eleve() {
     }
@@ -64,6 +71,14 @@ public class Eleve extends AbstractAuditingEntity implements Serializable {
         this.dateNaissence = dateNaissence;
     }
 
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Eleve.class.getSimpleName() + "[", "]")
@@ -71,22 +86,7 @@ public class Eleve extends AbstractAuditingEntity implements Serializable {
                 .add("prenom='" + prenom + "'")
                 .add("nom='" + nom + "'")
                 .add("dateNaissence=" + dateNaissence)
+                .add("adresse=" + adresse)
                 .toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Eleve eleve = (Eleve) o;
-        return Objects.equals(id, eleve.id) &&
-                Objects.equals(prenom, eleve.prenom) &&
-                Objects.equals(nom, eleve.nom) &&
-                Objects.equals(dateNaissence, eleve.dateNaissence);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, prenom, nom, dateNaissence);
     }
 }
