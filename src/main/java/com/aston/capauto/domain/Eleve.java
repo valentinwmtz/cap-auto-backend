@@ -36,6 +36,8 @@ public class Eleve extends AbstractAuditingEntity implements Serializable {
     @JsonManagedReference
     private Adresse adresse;
 
+    private String photo;
+
     public Eleve() {
     }
 
@@ -73,6 +75,18 @@ public class Eleve extends AbstractAuditingEntity implements Serializable {
 
     public Adresse getAdresse() {
         return adresse;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public void setAdresse(Adresse adresse) {
